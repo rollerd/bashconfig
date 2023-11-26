@@ -35,13 +35,16 @@ then
 COLOR2="\[\033[1;31m\]"
 fi
 
-export PS1="\[\033[38;5;2m\]\h:\[$(tput sgr0)\]\[\033[38;5;6m\]\W\[$(tput sgr0)\]\[\033[38;5;2m\] \u\\$ \[$(tput sgr0)\]"
+export PS1="\[\033[38;5;2m\]local:\[$(tput sgr0)\]\[\033[38;5;6m\]\W\[$(tput sgr0)\]\[\033[38;5;2m\] \u\\$ \[$(tput sgr0)\]"
 
 #----------------------------------------------------------------------------ENV VARIABLES-----------------------------------------------------------------
 export EDITOR=vim
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+export PATH=/usr/local/bin:$PATH
+export SHELL=/opt/homebrew/bin/bash
+export PATH="$PATH:/Users/$USER/.local/bin"
 
 #----------------------------------------------------------------------------BASH ALIASES-----------------------------------------------------------------
 if [ -f ~/.bash_aliases ]; then
@@ -65,13 +68,11 @@ export HISTFILE=~/.bash_eternal_history
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 
-PATH=$PATH:/Users/$USER/.hashicorp
 #export GOROOT=/Users/$USER/Go/go
 PATH=$PATH:$GOROOT/bin
 
 #export AWS_PROFILE=$(cat ~/.awsenv)
 export AWS_PROFILE=default
-#export PATH=$PATH:/Users/$USER/.hashicorp
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 source <(kubectl completion bash)
@@ -101,13 +102,14 @@ alias vi=nvim
 alias kubectx="kubectl ctx"
 alias diff=colordiff
 
+# ssh alias for connecting to other mac
+alias ssh='TERM=xterm-256color ssh'
+
 export PAGER="less -r"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+#source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 
 
 # IF HAVING BASH COMPLETION ISSUES:
 # https://www.shell-tips.com/mac/upgrade-bash/
 
-# Created by `pipx` on 2023-01-18 19:13:17
-export PATH="$PATH:/Users/$USER/.local/bin"
